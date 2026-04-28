@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Force Gemini Pro",
+  "version": "5.0",
+  "description": "视觉护栏 + 提交拦截 + 工具箱：检测 Fast 模型时警告/拦截，包含 Markdown 转换、去除回车等实用工具",
+  "options_page": "options.html",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": ["storage", "clipboardWrite"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "lib/marked.min.js",
+        "lib/katex.min.js",
+        "lib/auto-render.min.js",
+        "lib/jspdf.umd.min.js",
+        "content.js",
+        "toolbox.js"
+      ],
+      "css": ["lib/katex.min.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "interceptor.js",
+        "lib/marked.min.js",
+        "lib/katex.min.js",
+        "lib/katex.min.css",
+        "lib/jspdf.umd.min.js",
+        "lib/fonts/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
